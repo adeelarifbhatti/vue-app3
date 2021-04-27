@@ -6,6 +6,8 @@ services:
    dockerfile: ./Dockerfile
   volumes:
   -   ./src:/usr/src/app/src
+  -   ./package.json:/usr/src/app/package.json
+  -   ./vue.config.js:/usr/src/app/vue.config.js  
   -   ./public:/usr/src/app/public
   ports:
   -  "80:8080"
