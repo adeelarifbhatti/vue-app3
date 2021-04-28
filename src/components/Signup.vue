@@ -1,9 +1,12 @@
 <template>
-<form @submit.prevent="submitHandler">
-    <input type="text" required placeholder="display name" vmodel="displayName">
-    <input type="email" required placeholder="email" v-model="email">
-    <input type="password" required placeholder="password" v-model="password">
-    <button> Sign up </button>
+<form class="form" @submit.prevent="submitHandler">
+    <label class="form__label"> Display Name:</label>
+    <input type="text" class= "form__input" required  vmodel="displayName">
+    <label class="form__label"> Email</label>
+    <input type="email" class= "form__input" required v-model="email">
+    <label class="form__label"> Password</label>
+    <input type="password" class= "form__input" required v-model="password">
+    <button class="btn"> Sign up </button>
 </form>
   
 </template>
