@@ -13,16 +13,20 @@
 
 <script>
 import {ref} from 'vue'
+import Signup from '../composables/SignUp'
 
 export default {
 
     setup() {
+        const { error, signup } = Signup();
+
         const displayName = ref('');
         const email = ref('');
         const password = ref('')
     
-        const submitHandler = () => {
-            console.log(displayName, email, password)
+        const submitHandler = async() => {
+            console.log("remove this console.log",displayName, email, password);
+            await Signup(email.value,password.value,displayName.value);
         }
         return {displayName, email, password, submitHandler}
     }
