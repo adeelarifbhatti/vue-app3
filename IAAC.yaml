@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vue-app3-deployment
+  namespace: vue-app3-ns
+  labels:
+    app: vue-app3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vue-app3
+    template:
+      metadata:
+        labels:
+          apps: vue-app3
+      spec:
+        containers:
+        - name: vue-app3
+          image: adeelarifbhatti/vue-app3
+          ports:
+          - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vue-app3
+  namespace: vue-app3-ns
+  labels: 
+    app: vue-app3
+spec:
+  selector:
+  app: vue-app3
+  type: clusterIP
+ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata: 
+  name: vue-app3-ingress
+  namespace: vue-app3-ns
+spec:
+  rules: vue-app3.com
+    http:
+      paths: 
+      - path: /
+        backend:
+          serviceName: vue-app3
+          servicePort: 80
+          
